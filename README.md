@@ -74,7 +74,7 @@ For each buy lot, the cash actually paid out is:
 Lot value        = qty × buy price
 Brokerage (buy)   = per your brokerage setting (₹0 flat / flat ₹ / % of value)
 STT (buy)         = 0.1%  of lot value            [default]
-Exchange charges  = 0.00297% of lot value          [default, NSE-approx]
+Exchange charges  = 0.00307% of lot value          [default, NSE-approx]
 SEBI turnover fee = 0.0001% of lot value           [default]
 Stamp duty        = 0.015% of lot value  (buy-side only) [default]
 GST               = 18% of (brokerage + exchange + SEBI) [default]
@@ -103,7 +103,7 @@ Total Cost for CG       = sum across all lots
 Sell value         = P × total qty
 Brokerage (sell)   = per your setting
 STT (sell)         = 0.1% of sell value
-Exchange charges   = 0.00297% of sell value
+Exchange charges   = 0.00307% of sell value
 SEBI turnover fee  = 0.0001% of sell value
 GST                = 18% of (brokerage + exchange + SEBI)
 Other/DP charges   = flat ₹, optional
