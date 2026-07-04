@@ -199,6 +199,7 @@
     font-family: var(--mono);
     font-size: 12.5px;
   }
+  .lot-tally.no-border-top{ margin-top: 0; padding-top: 0; border-top: none; }
   .lot-tally .tally-item .k{ color: var(--ink-muted); font-size:10.5px; text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:2px;}
   .lot-tally .tally-item .v{ font-size: 15px; font-weight:600; }
   .lot-tally .tally-item.wide{ grid-column: 1 / -1; }
@@ -541,60 +542,10 @@
       <tbody id="lotsBody"></tbody>
     </table>
     <button class="add-lot" id="addLotBtn" type="button">+ Add another buy lot</button>
-
-    <div class="lot-tally">
-      <div class="tally-item">
-        <span class="k">Total qty</span>
-        <span class="v" id="tallyQty">0</span>
-      </div>
-      <div class="tally-item">
-        <span class="k">Weighted avg price</span>
-        <span class="v" id="tallyWap">₹0.00</span>
-      </div>
-      <div class="tally-item wide">
-        <span class="k">Total invested (X) — cash paid incl. all buy-side charges</span>
-        <span class="v" id="tallyInvested">₹0.00</span>
-      </div>
-    </div>
   </section>
 
   <section>
-    <p class="section-title"><span class="n">2</span> Target</p>
-    <div class="field">
-      <label for="targetY">Net amount I want in hand after exit (Y)</label>
-      <div class="money-input">
-        <span class="rupee">₹</span>
-        <input type="number" id="targetY" inputmode="decimal" placeholder="0.00" min="0" step="0.01" />
-      </div>
-      <p class="hint" id="growthHint"></p>
-    </div>
-
-    <div class="field">
-      <label>Tax treatment on the gain</label>
-      <div class="toggle-row">
-        <button type="button" class="toggle-btn active" id="btnStcg" data-regime="stcg">
-          STCG · 20%
-          <small>held under 12 months</small>
-        </button>
-        <button type="button" class="toggle-btn" id="btnLtcg" data-regime="ltcg">
-          LTCG · 12.5%
-          <small>held over 12 months</small>
-        </button>
-      </div>
-    </div>
-
-    <div class="field" id="ltcgExemptionField" style="display:none;">
-      <label for="ltcgUsed">₹1,25,000 LTCG exemption already used this year</label>
-      <div class="money-input">
-        <span class="rupee">₹</span>
-        <input type="number" id="ltcgUsed" inputmode="decimal" placeholder="0.00" min="0" step="0.01" value="0" />
-      </div>
-      <p class="hint">Remaining exemption is applied automatically before the 12.5% rate.</p>
-    </div>
-  </section>
-
-  <section>
-    <p class="section-title"><span class="n">3</span> Charges &amp; fees</p>
+    <p class="section-title"><span class="n">2</span> Charges &amp; fees</p>
     <details class="charges" id="chargesDetails">
       <summary>Adjust rates (defaults match a typical NSE delivery trade)</summary>
       <div class="charges-grid">
@@ -645,6 +596,59 @@
         <button class="reset-charges" id="resetCharges" type="button">Reset to defaults</button>
       </div>
     </details>
+  </section>
+
+  <section>
+    <p class="section-title"><span class="n">3</span> Target</p>
+    <div class="field">
+      <label for="targetY">Net amount I want in hand after exit (Y)</label>
+      <div class="money-input">
+        <span class="rupee">₹</span>
+        <input type="number" id="targetY" inputmode="decimal" placeholder="0.00" min="0" step="0.01" />
+      </div>
+      <p class="hint" id="growthHint"></p>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-title"><span class="n">4</span> Summary</p>
+    <div class="lot-tally no-border-top">
+      <div class="tally-item">
+        <span class="k">Total qty</span>
+        <span class="v" id="tallyQty">0</span>
+      </div>
+      <div class="tally-item">
+        <span class="k">Weighted avg price</span>
+        <span class="v" id="tallyWap">₹0.00</span>
+      </div>
+      <div class="tally-item wide">
+        <span class="k">Total invested (X) — cash paid incl. all buy-side charges</span>
+        <span class="v" id="tallyInvested">₹0.00</span>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:18px;">
+      <label>Tax treatment on the gain</label>
+      <div class="toggle-row">
+        <button type="button" class="toggle-btn active" id="btnStcg" data-regime="stcg">
+          STCG · 20%
+          <small>held under 12 months</small>
+        </button>
+        <button type="button" class="toggle-btn" id="btnLtcg" data-regime="ltcg">
+          LTCG · 12.5%
+          <small>held over 12 months</small>
+        </button>
+      </div>
+    </div>
+
+    <div class="field" id="ltcgExemptionField" style="display:none;">
+      <label for="ltcgUsed">₹1,25,000 LTCG exemption already used this year</label>
+      <div class="money-input">
+        <span class="rupee">₹</span>
+        <input type="number" id="ltcgUsed" inputmode="decimal" placeholder="0.00" min="0" step="0.01" value="0" />
+      </div>
+      <p class="hint">Remaining exemption is applied automatically before the 12.5% rate.</p>
+    </div>
   </section>
 
   <div class="result-wrap">
