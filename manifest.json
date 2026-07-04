@@ -1,6 +1,6 @@
 {
   "name": "Exit Calculator — Portfolio Exit Ledger",
-  "short_name": "Exit Calc",
+  "short_name": "Stock Xit Cal",
   "description": "Work out the exact price to sell your shares at, after brokerage, STT, GST, stamp duty and capital gains tax, to hit your target take-home amount.",
   "start_url": "./index.html",
   "scope": "./",
