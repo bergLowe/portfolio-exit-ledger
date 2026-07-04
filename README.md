@@ -16,8 +16,15 @@ build step, no data leaves the device.
 
 - Enter one or more **buy lots** (quantity + price) — the app computes your
   weighted average purchase price (WAP) and total cash invested automatically.
-- Enter your **target net amount (Y)** — the exact rupee figure you want in
-  hand after everything is accounted for.
+- Set your target three ways — pick whichever is easiest to reason about:
+  - **Net amount (Y)** — the exact rupee figure you want in hand after
+    everything is accounted for.
+  - **Profit ₹** — a rupee profit over and above your invested capital
+    (X), after all charges and tax on the sell side.
+  - **Profit %** — a percentage profit over and above invested capital (X).
+  
+  All three resolve to the same underlying net amount (Y); the profit-based
+  modes just compute Y = X + profit (₹) or Y = X × (1 + profit %) for you.
 - Choose your tax treatment: **STCG (20%)** or **LTCG (12.5%, with the
   ₹1,25,000 yearly exemption)**.
 - The app reverse-solves for the **exact exit price** needed, and shows:
