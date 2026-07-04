@@ -532,7 +532,7 @@
       <thead>
         <tr>
           <th style="width:26px;"></th>
-          <th>Qty</th>
+          <th class="num">Qty</th>
           <th class="num">Buy price (₹)</th>
           <th class="num">Value (₹)</th>
           <th style="width:26px;"></th>
@@ -861,13 +861,21 @@
       tdIdx.style.color = 'var(--ink-muted)';
       tdIdx.style.fontSize = '11px';
 
+      var tdValue = document.createElement('td');
+      tdValue.className = 'value num';
+      tdValue.textContent = fmtINR(num(lot.qty) * num(lot.price));
+
+      function refreshValueCell(){
+        tdValue.textContent = fmtINR(num(lot.qty) * num(lot.price));
+      }
+
       var tdQty = document.createElement('td');
       var qtyInput = document.createElement('input');
       qtyInput.type = 'number'; qtyInput.min = '0'; qtyInput.step = '1';
       qtyInput.value = lot.qty;
       qtyInput.setAttribute('aria-label', 'Quantity for lot ' + (idx+1));
       qtyInput.addEventListener('input', function(){
-        lot.qty = this.value; recalcAll();
+        lot.qty = this.value; refreshValueCell(); recalcAll();
       });
       tdQty.appendChild(qtyInput);
 
@@ -877,13 +885,9 @@
       priceInput.value = lot.price;
       priceInput.setAttribute('aria-label', 'Buy price for lot ' + (idx+1));
       priceInput.addEventListener('input', function(){
-        lot.price = this.value; recalcAll();
+        lot.price = this.value; refreshValueCell(); recalcAll();
       });
       tdPrice.appendChild(priceInput);
-
-      var tdValue = document.createElement('td');
-      tdValue.className = 'value num';
-      tdValue.textContent = fmtINR(num(lot.qty) * num(lot.price));
 
       var tdRm = document.createElement('td');
       if(state.lots.length > 1){
