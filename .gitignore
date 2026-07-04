@@ -1,0 +1,13 @@
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+
+# Local tooling (not currently used, but kept out if introduced later)
+node_modules/
+npm-debug.log*
+.env
