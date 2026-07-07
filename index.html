@@ -698,6 +698,10 @@
         <span class="k">Total invested (X) — cash paid incl. all buy-side charges</span>
         <span class="v" id="tallyInvested">₹0.00</span>
       </div>
+      <div class="tally-item wide">
+        <span class="k">Buy-side charges — brokerage, STT, exchange, SEBI, stamp duty &amp; GST</span>
+        <span class="v" id="tallyBuyCharges">₹0.00</span>
+      </div>
     </div>
 
     <div class="field" style="margin-top:18px;">
@@ -826,7 +830,7 @@
   // ---------- buy side aggregation ----------
   function computeBuySide(){
     var c = state.charges;
-    var totalQty = 0, totalGrossValue = 0, totalInvested = 0, totalCostForCG = 0;
+    var totalQty = 0, totalGrossValue = 0, totalInvested = 0, totalCostForCG = 0, totalBuyCharges = 0;
     var perLot = [];
 
     state.lots.forEach(function(lot){
@@ -839,13 +843,15 @@
       var sebi = value * (num(c.sebi)/100);
       var stamp = value * (num(c.stamp)/100);
       var gst = (brokerage + exch + sebi) * (num(c.gst)/100);
-      var netCost = value + brokerage + stt + exch + sebi + stamp + gst;
+      var charges = brokerage + stt + exch + sebi + stamp + gst;
+      var netCost = value + charges;
       var costForCG = value + brokerage;
 
       totalQty += qty;
       totalGrossValue += value;
       totalInvested += netCost;
       totalCostForCG += costForCG;
+      totalBuyCharges += charges;
 
       perLot.push({ qty: qty, price: price, value: value, netCost: netCost });
     });
@@ -858,6 +864,7 @@
       wap: wap,
       totalInvested: totalInvested,
       totalCostForCG: totalCostForCG,
+      totalBuyCharges: totalBuyCharges,
       perLot: perLot
     };
   }
@@ -1108,6 +1115,7 @@
   var tallyQty = document.getElementById('tallyQty');
   var tallyWap = document.getElementById('tallyWap');
   var tallyInvested = document.getElementById('tallyInvested');
+  var tallyBuyCharges = document.getElementById('tallyBuyCharges');
   var growthHint = document.getElementById('growthHint');
 
   function wRow(k, v, cls){
@@ -1119,6 +1127,7 @@
     tallyQty.textContent = fmtNum(buy.totalQty);
     tallyWap.textContent = fmtINR(buy.wap);
     tallyInvested.textContent = fmtINR(buy.totalInvested);
+    tallyBuyCharges.textContent = fmtINR(buy.totalBuyCharges);
 
     var Y;
     if(state.targetMode === 'profitAmount'){
